@@ -42,7 +42,10 @@ gulp.task('iconfont', ['clean'], function() {
 		}))
 		.pipe(gulp.dest('build/fonts/'));
 });
-
+/**
+ * 生成展示的index.html
+ * 方便以后在此页面上搜索已生成的字体图标的类名
+ */
 gulp.task('template', ['iconfont'],  function() {
 	gulp.src('src/index.html')
 		.pipe(template({
