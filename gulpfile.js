@@ -2,11 +2,17 @@ var gulp = require('gulp');
 var iconfont = require('gulp-iconfont');
 var iconfontCss = require('gulp-iconfont-css');
 var clean = require("gulp-clean");
-
+var fs = require("fs");
+var template = require("gulp-template");
 var fontName = 'iconfont';
+var icons = fs.readdirSync('src/icons');
+/** 拿到svg文件的名字 */
+icons = icons.map(function(icon) {
+	return icon.replace(/\.\w+$/, '');
+});
 
 gulp.task('clean', function() {
-	gulp.src("./build", {
+	return gulp.src("./build", {
 		read: false
 	})
 	.pipe(clean());
@@ -21,20 +27,28 @@ gulp.task('clean', function() {
  * @options  {number} fontHeight 指定输出字体图标的高度，默认为最高的那个图标
  */
 gulp.task('iconfont', ['clean'], function() {
-	return gulp.src('src/icons/*.svg')
-	.pipe(iconfontCss({
-		fontName: fontName,
-		path: 'src/templates/icons.css',
-		targetPath: '../css/icons.css',
-		fontPath: '../fonts/'
-	}))
-	.pipe(iconfont({
-		fontName: fontName,
-		formats: ['svg', 'ttf', 'eot', 'woff'],
-		normalize: true,
-		fontHeight: 1000
-	}))
-	.pipe(gulp.dest('build/fonts/'));
+	gulp.src('src/icons/*.svg')
+		.pipe(iconfontCss({
+			fontName: fontName,
+			path: 'src/templates/icons.css',
+			targetPath: '../css/icons.css',
+			fontPath: '../fonts/'
+		}))
+		.pipe(iconfont({
+			fontName: fontName,
+			formats: ['svg', 'ttf', 'eot', 'woff'],
+			normalize: true,
+			fontHeight: 1000
+		}))
+		.pipe(gulp.dest('build/fonts/'));
 });
 
-gulp.task('default', ['iconfont']);
+gulp.task('template', ['iconfont'],  function() {
+	gulp.src('src/index.html')
+		.pipe(template({
+			icons: icons
+		}))
+		.pipe(gulp.dest(''));
+});
+
+gulp.task('default', ['template']);

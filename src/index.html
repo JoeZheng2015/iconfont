@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字体图标展示</title>
+    <link rel="stylesheet" href="./build/css/icons.css">
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <ul class="icon_lists clearfix">
+        <% _.each(icons, function(icon) { %>
+           <li class="icon icon-<%= icon %>">
+              <div class="name"><%= icon%></div>
+           </li>
+        <% }); %>
+    </ul>   
+</body>
+</html>
