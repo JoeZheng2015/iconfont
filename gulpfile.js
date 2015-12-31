@@ -24,8 +24,8 @@ gulp.task('iconfont', ['clean'], function() {
 	return gulp.src('src/icons/*.svg')
 	.pipe(iconfontCss({
 		fontName: fontName,
-		path: 'src/templates/_icons.css',
-		targetPath: '../css/_icons.css',
+		path: 'src/templates/icons.css',
+		targetPath: '../css/icons.css',
 		fontPath: '../fonts/'
 	}))
 	.pipe(iconfont({
@@ -36,3 +36,5 @@ gulp.task('iconfont', ['clean'], function() {
 	}))
 	.pipe(gulp.dest('build/fonts/'));
 });
+
+gulp.task('default', ['iconfont']);
