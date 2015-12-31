@@ -1,0 +1,28 @@
+{
+  "name": "iconfont",
+  "version": "1.0.0",
+  "description": "如何使用gulp-icon生成字体图标的教程",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp iconfont"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/JoeZheng2015/iconfont.git"
+  },
+  "keywords": [
+    "字体图标"
+  ],
+  "author": "joezheng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JoeZheng2015/iconfont/issues"
+  },
+  "homepage": "https://github.com/JoeZheng2015/iconfont#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-iconfont": "^5.0.1",
+    "gulp-iconfont-css": "^2.0.0"
+  }
+}
